@@ -25,4 +25,14 @@ public class UserService {
         return userRepository.findById(id).orElse(null);
     }
 
+    public User login(String email, String password) {
+        User user = userRepository.findByEmail(email);
+        if (user != null) {
+            if (user.getPassword().equals(password)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
 }
