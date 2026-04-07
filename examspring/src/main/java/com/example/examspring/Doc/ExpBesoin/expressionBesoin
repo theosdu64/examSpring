@@ -1,0 +1,11 @@
+Le client souhaite une application web de gestion d'un agenda de contacts permettant à un utilisateur authentifié de gérer ses contacts personnels et professionnels.
+
+**Besoins fonctionnels :**
+
+- Un visiteur non connecté peut consulter la page d'accueil affichant un ensemble de contacts fictifs de démonstration.
+- Un visiteur peut s'inscrire et se connecter à l'application.
+- Un utilisateur connecté peut ajouter, modifier, supprimer et rechercher un contact.
+- Chaque contact est défini par : nom, prénom, email, téléphone, adresse, et éventuellement une photo ou des notes.
+- Les contacts peuvent être classés par catégorie (Professionnel, Personnel, Famille, etc.).
+- L'utilisateur peut filtrer et rechercher ses contacts par nom, catégorie ou mot-clé.
+- Bonus : possibilité d'envoyer et recevoir des messages internes à un contact (sans serveur de messagerie réel).
