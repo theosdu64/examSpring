@@ -1,0 +1,29 @@
+T1 : Java
+Version 17 (LTS)
+
+T2 : Spring Boot
+Version 3.5.13
+
+T3 : Spring Data JPA
+Version 3.2
+
+T4 : Thymeleaf
+Version 3.1
+
+T5 : Spring Validation
+Pour la validation des formulaires
+
+T6 : Spring Web
+
+T7 : Spring DevTools
+
+T8 : MariaDB Java Client
+Version 10.11
+
+T9 : Lombok
+
+T10 : Spring Boot Starter Test
+
+T11 : Maven Compiler Plugin
+
+T12 : Spring Boot Maven Plugin
