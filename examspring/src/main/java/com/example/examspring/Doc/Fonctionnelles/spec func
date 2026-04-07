@@ -1,0 +1,37 @@
+3.1 Rôle : Visiteur (non authentifié)
+
+U1 : Page d'accueil
+Affichage d'une liste de contacts fictifs de démonstration.
+
+U2 : Inscription
+Formulaire contenant nom d'utilisateur, email, mot de passe et confirmation du mot de passe.
+
+U3 : Connexion
+Formulaire contenant email et mot de passe.
+
+3.2 Rôle : Utilisateur connecté
+
+U4 : Dashboard
+Affichage de la liste des contacts avec options de tri et recherche.
+
+U5 : Ajouter un contact
+Formulaire contenant nom, prénom, email, téléphone, adresse, catégorie et notes.
+
+U6 : Modifier un contact
+Formulaire pré-rempli permettant la modification des informations du contact.
+
+U7 : Supprimer un contact
+Demande de confirmation avant suppression définitive.
+
+U8 : Rechercher un contact
+Recherche par mot-clé : nom, prénom ou email.
+
+U9 : Filtrer par catégorie
+Filtrage des contacts selon Pro, Perso, Famille ou Autre.
+
+U10 : Envoyer un message (bonus)
+Formulaire contenant objet, contenu et sélection du contact destinataire.
+
+U11 : Déconnexion
+Invalidation de la session et retour à la page d'accueil.
+
