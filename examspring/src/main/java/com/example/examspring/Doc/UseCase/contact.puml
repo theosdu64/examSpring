@@ -1,0 +1,39 @@
+@startuml
+left to right direction
+
+actor Visiteur as V
+actor Utilisateur as U
+V <|-- U
+
+package "Application Contacts" {
+usecase "Consulter la page d'accueil" as UC1
+usecase "S'inscrire" as UC2
+usecase "Se connecter" as UC3
+usecase "Se déconnecter" as UC4
+
+usecase "Gérer les contacts" as UC5
+usecase "Ajouter un contact" as UC6
+usecase "Modifier un contact" as UC7
+usecase "Supprimer un contact" as UC8
+usecase "Rechercher un contact" as UC9
+usecase "Filtrer par catégorie" as UC10
+
+usecase "Envoyer un message à un contact" as UC11
+}
+
+V --> UC1
+V --> UC2
+V --> UC3
+
+U --> UC4
+U --> UC5
+U --> UC11
+
+UC5 ..> UC6 : <<include>>
+UC5 ..> UC7 : <<include>>
+UC5 ..> UC8 : <<include>>
+UC5 ..> UC9 : <<include>>
+
+UC10 ..> UC9 : <<extend>>
+
+@enduml
