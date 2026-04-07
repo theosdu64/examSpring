@@ -1,0 +1,42 @@
+@startuml
+
+class User {
+
+- id : Long
+- username : String
+- email : String
+- password : String
+}
+
+class Contact {
+
+- id : Long
+- nom : String
+- prenom : String
+- email : String
+- telephone : String
+- adresse : String
+
+}
+
+class Category {
+
+- id : Long
+- name : String
+- description : String
+}
+
+class Message {
+
+- id : Long
+- subject : String
+- content : String
+- sentAt : LocalDateTime
+}
+
+User "1" -- "0..*" Contact : possède >
+Contact "0..*" -- "0..1" Category : classé dans >
+User "1" -- "0..*" Message : envoie >
+Message "0..*" -- "1" Contact : destiné à >
+
+@enduml
