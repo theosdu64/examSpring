@@ -48,5 +48,11 @@ public class AuthController {
         return "redirect:/";
     }
 
+    @GetMapping("/register")
+    public String registerForm(Model model) {
+        model.addAttribute("user", new User());
+        return "register";
+    }
+
 
 }
