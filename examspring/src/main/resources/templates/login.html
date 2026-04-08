@@ -1,10 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+    <h1>Bienvenue dans login</h1>
+</body>
+</html><!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head><title>Connexion</title></head>
+<body>
+<div layout:fragment="content">
+    <div class="container mt-5" style="max-width: 500px;">
+        <h2>Connexion</h2>
+        <div class="alert alert-danger" th:if="${error}" th:text="${error}"></div>
+        <form th:action="@{/login}" method="post">
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Mot de passe</label>
+                <input type="password" class="form-control" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Se connecter</button>
+            <a th:href="@{/register}" class="btn btn-link">Créer un compte</a>
+        </form>
+    </div>
+</div>
 </body>
 </html>
