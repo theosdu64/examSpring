@@ -1,10 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <title>Nouveau contact</title>
 </head>
 <body>
-$END$
+<div layout:fragment="content">
+    <div class="container mt-5" style="max-width: 500px;">
+        <h2>Nouveau contact</h2>
+        <form th:action="@{/contacts/create}" th:object="${contact}" method="post">
+            <div class="mb-3">
+                <label class="form-label">Nom</label>
+                <input type="text" class="form-control" th:field="*{lastName}">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Prénom</label>
+                <input type="text" class="form-control" th:field="*{firstName}">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" th:field="*{email}">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Téléphone</label>
+                <input type="text" class="form-control" th:field="*{phone}">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Adresse</label>
+                <input type="text" class="form-control" th:field="*{address}">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Catégorie</label>
+                <select class="form-select" name="categoryId">
+                    <option value="">-- Aucune --</option>
+                    <option th:each="cat : ${categories}"
+                            th:value="${cat.id}"
+                            th:text="${cat.name}">
+                    </option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Créer</button>
+            <a th:href="@{/contacts}" class="btn btn-secondary">Annuler</a>
+        </form>
+    </div>
+</div>
 </body>
 </html>
