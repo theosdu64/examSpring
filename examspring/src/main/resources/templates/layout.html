@@ -20,6 +20,9 @@
                 <a class="nav-link" th:href="@{/register}">Inscription</a>
             </li>
             <li class="nav-item" th:if="${session.user != null}">
+                <a class="nav-link" th:href="@{/contacts/create}">+ Ajoutez contact</a>
+            </li>
+            <li class="nav-item" th:if="${session.user != null}">
                 <a class="nav-link" th:href="@{/logout}">Déconnexion</a>
             </li>
         </ul>
