@@ -1,15 +1,26 @@
 package com.example.examspring.Controller;
 
+import com.example.examspring.Dao.CategoryRepository;
+import com.example.examspring.Entity.Contact;
+import com.example.examspring.Service.ContactService;
+import jakarta.validation.Valid;
 import org.springframework.ui.Model;
 import com.example.examspring.Entity.User;
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @AllArgsConstructor
 public class ContactController {
+
+    private final ContactService contactService;
+    private final CategoryRepository categoryRepository;
 
     @GetMapping("/contacts")
     public String list(HttpSession session, Model model) {
@@ -18,5 +29,38 @@ public class ContactController {
             return "redirect:/login";
         }
         return "contacts";
+    }
+
+    @GetMapping("/contacts/create")
+    public String newContact(HttpSession session, Model model) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/login";
+        }
+        model.addAttribute("contact", new Contact());
+        model.addAttribute("categories", categoryRepository.findAll());
+        return "contact-form";
+    }
+
+    @PostMapping("/contacts/create")
+    public String saveContact(@Valid @ModelAttribute Contact contact,
+                              BindingResult result,
+                              @RequestParam(required = false) Long categoryId,
+                              HttpSession session,
+                              Model model) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/login";
+        }
+        if (result.hasErrors()) {
+            model.addAttribute("categories", categoryRepository.findAll());
+            return "contact-form";
+        }
+        contact.setUser(user);
+        if (categoryId != null) {
+            contact.setCategory(categoryRepository.findById(categoryId).get());
+        }
+        contactService.save(contact);
+        return "redirect:/contacts";
     }
 }
