@@ -1,41 +1,43 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
-    <meta charset="UTF-8">
-    <title>Contacts - Accueil</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <title>Accueil</title>
 </head>
 <body>
 
-<div class="container mt-5 text-center">
-    <h1>Gérez vos contacts simplement</h1>
-    <h5 class="text-muted">Organisez, classez et retrouvez vos contacts en un clic</h5>
-</div>
+<div layout:fragment="content">
+    <div class="container mt-5 text-center">
+        <h1>Gérez vos contacts simplement</h1>
+        <h5 class="text-muted">Organisez, classez et retrouvez vos contacts en un clic</h5>
+    </div>
 
-<div class="container mt-4">
-    <div class="row">
-        <div class="col-md-4 mb-3">
-            <div class="card p-3">
-                <h5>Jean Dupont</h5>
-                <span class="badge bg-primary mb-2" style="width:fit-content;">Pro</span>
-                <p class="mb-1">jean.dupont@gmail.com</p>
-                <p>06 12 56 75 64</p>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <div class="card p-3">
+                    <h5>Jean Dupont</h5>
+                    <span class="badge bg-primary mb-2" style="width:fit-content;">Pro</span>
+                    <p class="mb-1">jean.dupont@gmail.com</p>
+                    <p>06 12 56 75 64</p>
+                </div>
             </div>
-        </div>
-        <div class="col-md-4 mb-3">
-            <div class="card p-3">
-                <h5>Marie Lemoine</h5>
-                <span class="badge bg-success mb-2" style="width:fit-content;">Perso</span>
-                <p class="mb-1">marie.lem@gmail.com</p>
-                <p>07 98 76 54 32</p>
+            <div class="col-md-4 mb-3">
+                <div class="card p-3">
+                    <h5>Marie Lemoine</h5>
+                    <span class="badge bg-success mb-2" style="width:fit-content;">Perso</span>
+                    <p class="mb-1">marie.lem@gmail.com</p>
+                    <p>07 98 76 54 32</p>
+                </div>
             </div>
-        </div>
-        <div class="col-md-4 mb-3">
-            <div class="card p-3">
-                <h5>Paul Bernard</h5>
-                <span class="badge bg-warning mb-2" style="width:fit-content;">Famille</span>
-                <p class="mb-1">paul.b@gmail.com</p>
-                <p>06 55 44 33 22</p>
+            <div class="col-md-4 mb-3">
+                <div class="card p-3">
+                    <h5>Paul Bernard</h5>
+                    <span class="badge bg-warning mb-2" style="width:fit-content;">Famille</span>
+                    <p class="mb-1">paul.b@gmail.com</p>
+                    <p>06 55 44 33 22</p>
+                </div>
             </div>
         </div>
     </div>
