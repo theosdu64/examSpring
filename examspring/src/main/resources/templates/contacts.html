@@ -27,14 +27,23 @@
                 <th>Email</th>
                 <th>Téléphone</th>
                 <th>Catégorie</th>
+                <th>Actions</th>
             </tr>
             </thead>
             <tbody>
+
             <tr th:each="contact : ${contacts}">
                 <td th:text="${contact.firstName + ' ' + contact.lastName}"></td>
                 <td th:text="${contact.email}"></td>
                 <td th:text="${contact.phone}"></td>
                 <td th:text="${contact.category != null ? contact.category.name : '-'}"></td>
+                <td>
+                    <a th:href="@{'/contacts/delete/' + ${contact.id}}"
+                       onclick="return confirm('Supprimer ce contact ?')"
+                       class="text-danger">
+                        Supprimer
+                    </a>
+                </td>
             </tr>
             <tr th:if="${#lists.isEmpty(contacts)}">
                 <td colspan="4" class="text-center text-muted">Aucun contact</td>
