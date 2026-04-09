@@ -1,0 +1,42 @@
+@startuml
+title Créer contact
+
+actor "User" as User
+participant "System" as Sys
+database "Database" as DB
+
+User -> Sys : créer contact
+activate Sys
+
+Sys -> Sys : checkIfConnected()
+
+alt [A1] Non connecté
+    Sys --> User : displayError("Vous devez être connecté")
+
+else Connecté
+    Sys -> Sys : isFormValid()
+
+    alt [A2] Form invalide
+        Sys --> User : displayError("Le formulaire est invalide")
+
+    else Form valide
+        Sys -> DB : créer contact()
+        activate DB
+
+        alt [A3] Erreur BDD
+            DB --> Sys : error("Échec création contact")
+            deactivate DB
+
+            Sys --> User : displayError("Erreur lors de la création")
+
+        else Contact créé avec succès
+            DB --> Sys : contactCreated(id)
+            deactivate DB
+
+            Sys --> User : displaySuccess("Contact créé")
+        end
+    end
+end
+
+deactivate Sys
+@enduml
