@@ -6,8 +6,9 @@ import com.example.examspring.Entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ContactRepository extends JpaRepository<Contact, Long> {
     List<Contact> findByUser(User user);
-    List<Contact> findByUserAndCategory(User user , Category category);
+    List<Contact> findByUserAndCategory(User user , Optional<Category> category);
 }
