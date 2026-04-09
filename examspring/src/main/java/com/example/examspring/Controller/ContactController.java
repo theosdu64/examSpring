@@ -1,6 +1,7 @@
 package com.example.examspring.Controller;
 
 import com.example.examspring.Dao.CategoryRepository;
+import com.example.examspring.Entity.Category;
 import com.example.examspring.Entity.Contact;
 import com.example.examspring.Service.ContactService;
 import jakarta.validation.Valid;
@@ -15,6 +16,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+import java.util.Optional;
+
 @Controller
 @AllArgsConstructor
 public class ContactController {
@@ -23,10 +27,18 @@ public class ContactController {
     private final CategoryRepository categoryRepository;
 
     @GetMapping("/contacts")
-    public String list(HttpSession session, Model model) {
+    public String list(HttpSession session, Model model, @RequestParam(required = false) Long categoryId) {
         User user = (User) session.getAttribute("user");
         if (user == null) {
             return "redirect:/login";
+        }
+        model.addAttribute("categories", categoryRepository.findAll());
+        if (categoryId != null && categoryId > 0 && user != null) {
+            Optional<Category> category = categoryRepository.findById(categoryId);
+            model.addAttribute("contacts", contactService.findByUserAndCategory(user, category));
+        } else {
+            List<Contact> contacts = contactService.findByUser(user);
+            model.addAttribute("contacts", contacts);
         }
         return "contacts";
     }
