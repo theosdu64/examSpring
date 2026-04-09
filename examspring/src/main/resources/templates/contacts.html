@@ -1,13 +1,41 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout}">
-<head><title>Mes contacts</title></head>
+<head>
+    <title>Mes contacts</title>
+</head>
 <body>
 <div layout:fragment="content">
     <div class="container mt-5">
-        <h2>Mes contacts</h2>
-        <p>Bienvenue, vous êtes connecté !</p>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Mes contacts</h2>
+            <a th:href="@{/contacts/create}" class="btn btn-primary">+ Nouveau contact</a>
+        </div>
+        <a th:href="@{/contacts}" class="btn btn-outline-primary btn-sm">Tous</a>
+        <hr>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Téléphone</th>
+                <th>Catégorie</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="contact : ${contacts}">
+                <td th:text="${contact.firstName + ' ' + contact.lastName}"></td>
+                <td th:text="${contact.email}"></td>
+                <td th:text="${contact.phone}"></td>
+                <td th:text="${contact.category != null ? contact.category.name : '-'}"></td>
+            </tr>
+            <tr th:if="${#lists.isEmpty(contacts)}">
+                <td colspan="4" class="text-center text-muted">Aucun contact</td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 </body>
