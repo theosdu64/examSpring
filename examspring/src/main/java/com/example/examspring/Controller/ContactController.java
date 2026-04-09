@@ -78,4 +78,12 @@ public class ContactController {
         contactService.deleteById(id);
         return "redirect:/contacts";
     }
+
+    @GetMapping("/contacts/{id}")
+    public String modifyContact(@PathVariable Long id, Model model) {
+        Contact contact = contactService.findById(id);
+        model.addAttribute("contact", contact);
+        model.addAttribute("categories", categoryRepository.findAll());
+        return "modify-contact-form";
+    }
 }
