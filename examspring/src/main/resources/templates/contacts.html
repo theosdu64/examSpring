@@ -14,6 +14,11 @@
             <a th:href="@{/contacts/create}" class="btn btn-primary">+ Nouveau contact</a>
         </div>
         <a th:href="@{/contacts}" class="btn btn-outline-primary btn-sm">Tous</a>
+        <a th:each="cat : ${categories}"
+           th:href="@{/contacts(categoryId=${cat.id})}"
+           th:text="${cat.name}"
+           class="btn btn-outline-primary btn-sm">
+        </a>
         <hr>
         <table class="table">
             <thead>
