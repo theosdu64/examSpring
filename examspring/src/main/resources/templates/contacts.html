@@ -43,6 +43,10 @@
                        class="text-danger">
                         Supprimer
                     </a>
+                    <span> | </span>
+                    <a th:href="@{'/contacts/' + ${contact.id}}" class="text-primary">
+                        Modifier
+                    </a>
                 </td>
             </tr>
             <tr th:if="${#lists.isEmpty(contacts)}">
