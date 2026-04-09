@@ -86,4 +86,28 @@ public class ContactController {
         model.addAttribute("categories", categoryRepository.findAll());
         return "modify-contact-form";
     }
+
+    @PostMapping("/contacts/edit/{id}")
+    public String updateContact(@PathVariable Long id,
+                                @Valid @ModelAttribute Contact contact,
+                                BindingResult result,
+                                @RequestParam(required = false) Long categoryId,
+                                HttpSession session,
+                                Model model) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/login";
+        }
+        if (result.hasErrors()) {
+            model.addAttribute("categories", categoryRepository.findAll());
+            return "contact-form";
+        }
+        contact.setId(id);
+        contact.setUser(user);
+        if (categoryId != null) {
+            contact.setCategory(categoryRepository.findById(categoryId).get());
+        }
+        contactService.save(contact);
+        return "redirect:/contacts";
+    }
 }
