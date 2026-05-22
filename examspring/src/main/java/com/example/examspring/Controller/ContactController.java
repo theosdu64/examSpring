@@ -72,9 +72,23 @@ public class ContactController {
         contactService.save(contact);
         return "redirect:/contacts";
     }
+//    Bug trouve (Methode pas proteger du tout)
+//    @GetMapping("/contacts/delete/{id}")
+//    public String deleteContact(@PathVariable Long id) {
+//        contactService.deleteById(id);
+//        return "redirect:/contacts";
+//    }
 
     @GetMapping("/contacts/delete/{id}")
-    public String deleteContact(@PathVariable Long id) {
+    public String deleteContact(@PathVariable Long id, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/login";
+        }
+        Contact contact = contactService.findById(id);
+        if (contact == null) {
+            return "redirect:/contacts";
+        }
         contactService.deleteById(id);
         return "redirect:/contacts";
     }
